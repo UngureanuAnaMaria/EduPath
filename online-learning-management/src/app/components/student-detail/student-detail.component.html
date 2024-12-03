@@ -1,0 +1,52 @@
+<div class="form-container">
+  <h1>Student Info</h1>
+  <div>
+    <label for="studentId">Student ID:</label>
+    <input type="text" id="studentId" [formControl]="studentIdControl" />
+    <button (click)="searchStudent()">Search</button>
+    <div *ngIf="studentIdControl.invalid && studentIdControl.touched">
+      <small *ngIf="studentIdControl.errors?.['required']">ID is required.</small>
+      <small *ngIf="studentIdControl.errors?.['invalidGuid']">ID must be a valid GUID.</small>
+    </div>
+    <div *ngIf="errorMessage">
+      <small>{{ errorMessage }}</small>
+    </div>
+  </div>
+
+  <div *ngIf="student">
+    <div>
+      <label>Name:</label>
+      <p>{{ student.name }}</p>
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <p>{{ student.email }}</p>
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <p>{{ student.password }}</p>
+    </div>
+
+    <div>
+      <label>Status:</label>
+      <p>{{ student.status ? 'Active' : 'Inactive' }}</p>
+    </div>
+
+    <div>
+      <label>Created At:</label>
+      <p>{{ student.createdAt | date }}</p>
+    </div>
+
+    <div>
+      <label>Last Login:</label>
+      <p>{{ student.lastLogin | date }}</p>
+    </div>
+    
+    <div class="delete-button-container">
+      <button type="button" (click)="deleteStudent()">Delete</button>
+    </div>
+    
+  </div>
+</div>

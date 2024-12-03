@@ -1,0 +1,46 @@
+<div class="student-list">
+  <h1>Student List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Last Login</th>
+        <th>Courses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.status ? 'Active' : 'Inactive' }}</td>
+        <td>{{ student.createdAt | date: 'short' }}</td>
+        <td>{{ student.lastLogin ? (student.lastLogin | date: 'short') : 'N/A' }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let course of student.studentCourses || []">
+              Course ID: {{ course.courseId }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button class="pagination-btn" 
+            (click)="onPageChange(pageNumber - 1)" 
+            [disabled]="pageNumber === 1">
+      &larr; Previous
+    </button>
+    <span>Page {{ pageNumber }} of {{ getTotalPages() }}</span>
+    <button class="pagination-btn" 
+            (click)="onPageChange(pageNumber + 1)" 
+            [disabled]="pageNumber >= getTotalPages()">
+      Next &rarr;
+    </button>
+  </div>
+  
+</div>

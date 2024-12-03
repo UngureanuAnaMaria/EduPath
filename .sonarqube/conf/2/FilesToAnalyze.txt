@@ -1,0 +1,10 @@
+﻿C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\DependencyInjection.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Migrations\20241202174845_InitialCreate.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Migrations\20241202174845_InitialCreate.Designer.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Migrations\ApplicationDbContextModelSnapshot.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Persistence\ApplicationDbContext.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Repositories\CourseRepository.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Repositories\LessonRepository.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Repositories\ProfessorRepository.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Repositories\StudentCourseRepository.cs
+C:\Users\Tallya\Desktop\EduPathProject\Infrastructure\Repositories\StudentRepository.cs

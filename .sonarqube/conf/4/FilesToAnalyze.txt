@@ -1,0 +1,13 @@
+﻿C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Create\CreateCourseCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Create\CreateProfessorCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Create\CreateStudentCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Delete\DeleteCourseCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Delete\DeleteProfessorComandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Delete\DeleteStudentCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Update\UpdateCourseCommandHandlerTests.cs
+C:\Users\Tallya\Desktop\EduPathProject\TestProject1\CommandTests\Update\UpdateStudentCommandHandlerTests.cs
+C:\Users\Tallya\.nuget\packages\microsoft.net.test.sdk\17.12.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs
+C:\Users\Tallya\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.exe
+C:\Users\Tallya\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.dll
+C:\Users\Tallya\.nuget\packages\xunit.runner.visualstudio\3.0.0-pre.49\build\net6.0\xunit.abstractions.dll
+C:\Users\Tallya\.nuget\packages\xunit.runner.visualstudio\3.0.0-pre.49\build\net6.0\xunit.runner.visualstudio.testadapter.dll
