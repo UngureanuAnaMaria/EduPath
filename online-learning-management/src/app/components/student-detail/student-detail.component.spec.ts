@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { StudentDTO } from '../../models/student.model';
 import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 describe('StudentDetailComponent', () => {
   let component: StudentDetailComponent;
@@ -13,12 +14,13 @@ describe('StudentDetailComponent', () => {
   let studentServiceSpy: jasmine.SpyObj<StudentService>;
   let routerSpy: jasmine.SpyObj<Router>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const studentServiceMock = jasmine.createSpyObj('StudentService', ['getStudentById', 'deleteStudent']);
     const routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
-    TestBed.configureTestingModule({
-      imports: [StudentDetailComponent],
+    await TestBed.configureTestingModule({
+      imports: [CommonModule, ReactiveFormsModule],
+      declarations: [StudentDetailComponent],
       providers: [
         { provide: StudentService, useValue: studentServiceMock },
         { provide: Router, useValue: routerMock },
@@ -47,7 +49,7 @@ describe('StudentDetailComponent', () => {
     component.searchStudent();
 
     fixture.detectChanges();
-    expect(component.errorMessage).toBe(null);
+    expect(component.errorMessage).toBe('Error fetching student.');
   });
 
   it('should validate GUID on invalid studentId input', () => {
@@ -78,7 +80,7 @@ describe('StudentDetailComponent', () => {
     expect(studentServiceSpy.deleteStudent).toHaveBeenCalledWith('1');
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/student-list']);
     expect(component.student).toBeNull();
-    expect(component.studentIdControl.value).toBe(null);
+    expect(component.studentIdControl.value).toBeNull();
     expect(component.errorMessage).toBeNull();
   });
   
@@ -94,25 +96,16 @@ describe('StudentDetailComponent', () => {
     };
     component.student = mockStudent;
   
-    // Simulate failure in deletion
     studentServiceSpy.deleteStudent.and.returnValue(throwError(() => new Error('Delete failed')));
     spyOn(window, 'confirm').and.returnValue(true);
   
     component.deleteStudent();
   
     expect(studentServiceSpy.deleteStudent).toHaveBeenCalledWith('1');
-    expect(component.errorMessage).toBe(null);
+    expect(component.errorMessage).toBe('Error deleting student.');
   });
   
-  it('should handle error if student not found', () => {
-    studentServiceSpy.getStudentById.and.returnValue(throwError(() => new Error('Student not found')));
-    component.searchStudent();
-  
-    fixture.detectChanges();
-    expect(component.errorMessage).toBe(null);
-  });
-  
-  /*it('should call searchStudent on search button click and display student data', () => {
+  it('should call searchStudent on search button click and display student data', () => {
     const mockStudent: StudentDTO = {
       id: '1',
       name: 'John Doe',
@@ -131,5 +124,5 @@ describe('StudentDetailComponent', () => {
     const nameElement = fixture.debugElement.query(By.css('p')).nativeElement;
     expect(nameElement.textContent).toBe('John Doe');
     expect(studentServiceSpy.getStudentById).toHaveBeenCalledWith('1');
-  });*/  
+  });
 });

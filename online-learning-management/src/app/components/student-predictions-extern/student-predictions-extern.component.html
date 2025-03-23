@@ -1,0 +1,134 @@
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a routerLink="/student-list" class="navbar-brand">
+      <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+      EduPath</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <button class="predictions" (click)="onGetPredictions()"></button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;" (click)="onLogout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="form-container">
+  <h1>Student Predictions</h1>
+  <form [formGroup]="studentForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" />
+      <div *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched">
+        <small *ngIf="studentForm.get('name')?.errors?.['required']">Name is required.</small>
+        <small *ngIf="studentForm.get('name')?.errors?.['pattern']">Only letters and spaces are allowed.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="gender">Gender:</label>
+      <input id="gender" formControlName="gender" type="text" />
+      <div *ngIf="studentForm.get('gender')?.invalid && studentForm.get('gender')?.touched">
+        <small *ngIf="studentForm.get('gender')?.errors?.['required']">Gender is required.</small>
+        <small *ngIf="studentForm.get('gender')?.errors?.['invalidGender']">Gender must be either Male or Female.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="age">Age:</label>
+      <input id="age" formControlName="age" type="number" />
+      <div *ngIf="studentForm.get('age')?.invalid && studentForm.get('age')?.touched">
+        <small *ngIf="studentForm.get('age')?.errors?.['required']">Age is required.</small>
+        <small *ngIf="studentForm.get('age')?.errors?.['min']">Age must be greater than 0.</small>
+        <small *ngIf="studentForm.get('age')?.errors?.['max']">Age must be less than 121.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="gpa">GPA:</label>
+      <input id="gpa" formControlName="gpa" type="number" step="0.01" />
+      <div *ngIf="studentForm.get('gpa')?.invalid && studentForm.get('gpa')?.touched">
+        <small *ngIf="studentForm.get('gpa')?.errors?.['required']">GPA is required.</small>
+        <small *ngIf="studentForm.get('gpa')?.errors?.['min']">GPA must be greater than or equal to 0.</small>
+        <small *ngIf="studentForm.get('gpa')?.errors?.['max']">GPA must be less than or equal to 4.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="major">Major:</label>
+      <input id="major" formControlName="major" type="text" />
+      <div *ngIf="studentForm.get('major')?.invalid && studentForm.get('major')?.touched">
+        <small *ngIf="studentForm.get('major')?.errors?.['required']">Major is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="interestedDomain">Interested Domain:</label>
+      <input id="interestedDomain" formControlName="interestedDomain" type="text" />
+      <div *ngIf="studentForm.get('interestedDomain')?.invalid && studentForm.get('interestedDomain')?.touched">
+        <small *ngIf="studentForm.get('interestedDomain')?.errors?.['required']">Interested domain is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="projects">Projects:</label>
+      <input id="projects" formControlName="projects" type="text" />
+      <div *ngIf="studentForm.get('projects')?.invalid && studentForm.get('projects')?.touched">
+        <small *ngIf="studentForm.get('projects')?.errors?.['required']">Projects are required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="python">Python:</label>
+      <input id="python" formControlName="python" type="text" />
+      <div *ngIf="studentForm.get('python')?.invalid && studentForm.get('python')?.touched">
+        <small *ngIf="studentForm.get('python')?.errors?.['required']">Python skills are required.</small>
+        <small *ngIf="studentForm.get('python')?.errors?.['invalidLevel']">Python level must be one of: Weak, Strong, Average.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="sql">SQL:</label>
+      <input id="sql" formControlName="sql" type="text" />
+      <div *ngIf="studentForm.get('sql')?.invalid && studentForm.get('sql')?.touched">
+        <small *ngIf="studentForm.get('sql')?.errors?.['required']">SQL skills are required.</small>
+        <small *ngIf="studentForm.get('sql')?.errors?.['invalidLevel']">SQL level must be one of: Weak, Strong, Average.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="java">Java:</label>
+      <input id="java" formControlName="java" type="text" />
+      <div *ngIf="studentForm.get('java')?.invalid && studentForm.get('java')?.touched">
+        <small *ngIf="studentForm.get('java')?.errors?.['required']">Java skills are required.</small>
+        <small *ngIf="studentForm.get('java')?.errors?.['invalidLevel']">Java level must be one of: Weak, Strong, Average.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="studentForm.invalid">Get Predictions</button>
+  </form>
+
+  <div *ngIf="errorMessage">
+    <small>{{ errorMessage }}</small>
+  </div>
+
+  <div *ngIf="predictions">
+    <div>
+      <label>Predicted Future Career:</label>
+      <p>{{ predictions.futureCareer }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light text-center py-3 mt-5">
+  <p>© 2025 EduPath. All rights reserved.</p>
+</footer>
+

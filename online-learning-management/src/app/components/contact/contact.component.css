@@ -1,0 +1,44 @@
+/* Contact Section */
+.contact-container{
+    background-image: url('/bkg.webp');
+    font-weight: 500;
+}
+
+.contact-section h1 {
+    padding-bottom: 1rem;
+    color: #2E7D32;
+    font-size: 2.5rem;
+}
+
+.contact-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-section p {
+    color: #555;
+}
+
+.contact-section ul {
+    padding-left: 0;
+}
+
+.contact-section ul li {
+    margin-bottom: 10px;
+}
+
+.col-md-6 {
+    background-color: rgba(255, 255, 255, 0.582);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.col-md-6 h4 {
+    padding-top: 1rem;
+}
+
+#logo {
+    height: 40px;
+    margin-right: 10px;
+  }

@@ -1,0 +1,50 @@
+:host {
+  background-image: url('/bkg.webp');
+  background-size: cover;
+  display: block;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.profile-section {
+  margin-top: 2em;
+  padding: 10rem;
+}
+
+.card-body {
+  line-height: 2;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1.2em;
+}
+
+.img-fluid {
+  max-width: 40rem;
+}
+
+  

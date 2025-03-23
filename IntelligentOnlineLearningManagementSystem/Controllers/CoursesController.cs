@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.Responses;
 using Application.Use_Cases.Commands.Create;
 using Application.Use_Cases.Commands.Delete;
 using Application.Use_Cases.Commands.Update;
@@ -21,7 +22,7 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<CourseDTO>>> GetCourses([FromQuery] string? name, [FromQuery] Guid? professorId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<GetCoursesResponse>> GetCourses([FromQuery] string? name, [FromQuery] Guid? professorId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var query = new GetCoursesQuery
             {

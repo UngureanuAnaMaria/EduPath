@@ -1,0 +1,65 @@
+<div class="welcome-container">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a routerLink="/welcome-page" class="navbar-brand">
+        <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+        EduPath
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerLink="/welcome-page" class="nav-link" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/login" class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Welcome Section -->
+  <div class="hero-section text-center text-white">
+    <div class="container">
+      <h1>Welcome to EduPath!</h1>
+      <p>Your ultimate platform for online learning and teaching.</p>
+      <a routerLink="/select-role" class="btn btn-success btn-lg mt-3">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section container text-center mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Students</h3>
+        <p>Enhance your knowledge with our diverse courses.</p>
+        <img src="welcome-students.jpeg" alt="Student" class="rounded-circle mt-3">
+      </div>
+      <div class="col-md-4">
+        <h3>Instructors</h3>
+        <p>Create and share interactive lessons effortlessly.</p>
+        <img src="welcome-instructors.jpeg" alt="Student" class="rounded-circle mt-3">
+      </div>
+      <div class="col-md-4">
+        <h3>Join Us</h3>
+        <p>Start your journey today and achieve your goals.</p>
+        <img src="welcome-join.jpeg" alt="Student" class="rounded-circle mt-3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-light text-center py-3 mt-5">
+    <p>© 2025 EduPath. All rights reserved.</p>
+  </footer>
+</div>

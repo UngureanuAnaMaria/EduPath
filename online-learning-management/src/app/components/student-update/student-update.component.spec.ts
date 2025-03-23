@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { StudentUpdateComponent } from './student-update.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -6,7 +6,6 @@ import { StudentService } from '../../services/student.service';
 import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('StudentUpdateComponent', () => {
   let component: StudentUpdateComponent;
@@ -22,7 +21,7 @@ describe('StudentUpdateComponent', () => {
       imports: [ 
         ReactiveFormsModule, 
         HttpClientTestingModule, 
-        StudentUpdateComponent // Importing the standalone component here
+        StudentUpdateComponent
       ],
       providers: [
         FormBuilder,
@@ -55,7 +54,7 @@ describe('StudentUpdateComponent', () => {
     expect(component.studentIdControl).toBeDefined();
   });
 
-  /*it('should call searchStudent() and populate the form when student is found', () => {
+  it('should call searchStudent() and populate the form when student is found', () => {
     const mockStudent = {
       id: '123',
       name: 'John Doe',
@@ -77,20 +76,20 @@ describe('StudentUpdateComponent', () => {
       password: 'password123',
       status: true,
       createdAt: '2023-12-01',
-      lastLogin: '2023-12-02'
+      lastLogin: '2023-12-02',
+      studentCourses: []
     });
-  });*/
+  });
 
-  /*it('should handle error if student is not found', () => {
+  it('should handle error if student is not found', () => {
     studentService.getStudentById.and.returnValue(throwError(() => new Error('Error fetching student')));
   
     component.searchStudent();
   
     expect(component.errorMessage).toBe('Error fetching student.');
-  });*/
-  
+  });
 
-  /*it('should call updateStudent() and navigate on success', fakeAsync(() => {
+  it('should call updateStudent() and navigate on success', fakeAsync(() => {
     const formValue = {
       id: '123',
       name: 'John Doe',
@@ -98,7 +97,8 @@ describe('StudentUpdateComponent', () => {
       password: 'password123',
       status: true,
       createdAt: '2023-12-01',
-      lastLogin: '2023-12-02'
+      lastLogin: '2023-12-02',
+      studentCourses: 'courseId'
     };
   
     component.studentForm.setValue(formValue);
@@ -106,7 +106,8 @@ describe('StudentUpdateComponent', () => {
     const formValueWithDates = {
       ...formValue,
       createdAt: new Date(formValue.createdAt),
-      lastLogin: new Date(formValue.lastLogin)
+      lastLogin: new Date(formValue.lastLogin),
+      studentCourses: [{ id: 'someId', studentId: formValue.id, courseId: formValue.studentCourses }]
     };
   
     studentService.updateStudent.and.returnValue(of(formValueWithDates));
@@ -119,11 +120,12 @@ describe('StudentUpdateComponent', () => {
     expect(studentService.updateStudent).toHaveBeenCalledOnceWith({
       ...formValue,
       createdAt: new Date(formValue.createdAt),
-      lastLogin: new Date(formValue.lastLogin)
+      lastLogin: new Date(formValue.lastLogin),
+      studentCourses: [{ id: 'someId', studentId: formValue.id, courseId: formValue.studentCourses }]
     });
     expect(router.navigate).toHaveBeenCalledOnceWith(['/student-list']);
     expect(component.errorMessage).toBeNull();
-  }));*/
+  }));
 
   it('should handle error when updating student', () => {
     const formValue = {
@@ -133,13 +135,14 @@ describe('StudentUpdateComponent', () => {
       password: 'password123',
       status: true,
       createdAt: '2023-12-01',
-      lastLogin: '2023-12-02'
+      lastLogin: '2023-12-02',
+      studentCourses: 'courseId'
     };
     component.studentForm.setValue(formValue);
 
     studentService.updateStudent.and.returnValue(throwError(() => new Error('An error occurred')));
     component.updateStudent();
 
-    expect(component.errorMessage).toBe(null);
+    expect(component.errorMessage).toBe('An error occurred while updating the student. Please try again.');
   });
 });

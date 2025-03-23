@@ -1,0 +1,41 @@
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a routerLink="/course-list" class="navbar-brand">
+      <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+      EduPath</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <button class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;" (click)="onLogout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="profile-section" >
+<div class="row mt-4" *ngIf="course">
+  <div class="col-md-4 text-center">
+    <img src="course.png" alt="Course Picture" class="img-fluid rounded-circle">
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ course.name }}</h5>
+        <p class="card-text"><strong>Description:</strong> {{ course.description }}</p>
+        <button type="button" class="btn btn-danger" (click)="deleteCourse()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-light text-center py-3 mt-5">
+  <p>© 2025 EduPath. All rights reserved.</p>
+</footer>
+

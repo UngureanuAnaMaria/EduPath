@@ -1,0 +1,58 @@
+.container {
+    max-width: 800px;
+    margin-top: 50px;
+    padding: 20px;
+  }
+
+  :host {
+    background-image: url('/bkg.webp');
+    background-size: cover;
+    display: block;
+    padding: 10rem;
+    font-weight: 500;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .btn-primary {
+    background-image: url('/buttonCreate.jpg');
+    border-color: #28a745;
+  }
+
+  .btn-primary:hover {
+    background-image: url('/buttonCreateHover.jpg');
+    border-color: #28a745;
+  }
+  
+  .btn-success {
+    background-image: url('/buttonCreate.jpg');
+    border-color: #28a745;
+  }
+
+  .btn-success:hover {
+    background-image: url('/buttonCreateHover.jpg');
+    border-color: #28a745;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .lead {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  h2.display-4 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .bi-arrow-left {
+    font-size: 1.2rem;
+  }
+  

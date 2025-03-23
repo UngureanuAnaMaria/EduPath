@@ -1,0 +1,80 @@
+:host {
+  background-image: url('/bkg.webp');
+  background-size: cover;
+  display: block;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.predictions {
+  background-image: url('/ML-icon.png');
+  background-size: cover;
+  display: block;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 10px;
+  border-color: #2E7D32;
+  margin-right: 0.5em;
+}
+
+.predictions:hover {
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+  transform: translateY(-2px);
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 6em;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-top: 5em;
+  margin-bottom: 5em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form-container label {
+  margin-top: 1em;
+  display: block;
+  font-weight: bold;
+  color: #333;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-container p {
+  padding: 0.7em;
+  margin-top: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 1em;
+}

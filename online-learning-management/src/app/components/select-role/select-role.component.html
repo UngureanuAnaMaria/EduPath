@@ -1,0 +1,22 @@
+<div class="container">
+    <!-- Title Section -->
+    <div class="text-center mt-5">
+      <h2 class="display-4">What type of account would you like to create?</h2>
+      <p class="lead">Choose your role to continue with the registration process.</p>
+    </div>
+  
+    <!-- Role Selection Buttons -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-5 mb-4">
+        <button class="btn btn-primary btn-block btn-lg" (click)="selectRole('student')">
+          <h4>Student</h4>
+        </button>
+      </div>
+      <div class="col-md-5 mb-4">
+        <button class="btn btn-success btn-block btn-lg" (click)="selectRole('instructor')">
+          <h4>Instructor</h4>
+        </button>
+      </div>
+    </div>
+  </div>
+  

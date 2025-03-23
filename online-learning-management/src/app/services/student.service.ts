@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StudentDTO } from '../models/student.model';
+import { StudentDataExternDTO, StudentDTO, StudentPredictions, StudentPredictionsExtern } from '../models/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class StudentService {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString());
-  
+
     return this.http.get<{ students: StudentDTO[], totalCount: number }>(this.apiUrl, { params });
   }
-  
+
   public createStudent(student: StudentDTO): Observable<StudentDTO> {
     return this.http.post<StudentDTO>(this.apiUrl, student);
   }
@@ -34,5 +34,13 @@ export class StudentService {
 
   public deleteStudent(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  public getStudentPredictions(id: string): Observable<StudentPredictions> {
+    return this.http.get<StudentPredictions>(`${this.apiUrl}/${id}/predictions`);
+  }
+
+  public getStudentPredictionsExtern(student: StudentDataExternDTO): Observable<StudentPredictionsExtern> {
+    return this.http.post<StudentPredictionsExtern>(`${this.apiUrl}/predictions-extern`, student);
   }
 }

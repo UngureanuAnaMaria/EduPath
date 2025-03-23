@@ -1,27 +1,35 @@
-﻿using Application.DTOs;
+﻿using Application.AI_ML_Module;
+using Application.DTOs;
 using Application.Responses;
 using Application.Use_Cases.Commands.Create;
 using Application.Use_Cases.Commands.Delete;
 using Application.Use_Cases.Commands.Update;
 using Application.Use_Cases.Queries;
 using Domain.Common;
+using Domain.Predictions;
+using Domain.Repositories;
+using Infrastructure.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntelligentOnlineLearningManagementSystem.Controllers
 {
-    [Route("api/v1/[controller]")]
     [ApiController]
+    [Route("api/v1/[controller]")]
     public class StudentsController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IStudentRepository studentRepository;
 
-        public StudentsController(IMediator mediator)
+        public StudentsController(IMediator mediator, IStudentRepository studentRepository)
         {
             this.mediator = mediator;
+            this.studentRepository = studentRepository;
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<GetStudentsResponse>> GetStudents([FromQuery] string? name, [FromQuery] bool? status, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 2)
         {
             var query = new GetStudentsQuery
@@ -38,6 +46,7 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Result<Guid>>> CreateStudent(CreateStudentCommand command)
         {
             var result = await mediator.Send(command);
@@ -45,12 +54,19 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<StudentDTO>> GetById(Guid id)
         {
-            return await mediator.Send(new GetStudentByIdQuery { Id = id });
+            var student = await mediator.Send(new GetStudentByIdQuery { Id = id });
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Ok(student);
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             await mediator.Send(new DeleteStudentByIdCommand { Id = id });
@@ -58,6 +74,7 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [Authorize]
         public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateStudentCommand command)
         {
             if (id != command.Id)
@@ -74,6 +91,39 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet("{id}/predictions")]
+        [Authorize]
+        public async Task<ActionResult<Domain.Predictions.StudentPredictions>> GetPredictions(Guid id)
+        {
+            try
+            {
+                var predictions = await studentRepository.GetPredictionForStudentAsync(id);
+                return Ok(predictions);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost("predictions-extern")]
+        public async Task<ActionResult<StudentPredictionsExtern>> PostPredictionsExtern(StudentPredictionDatas student)
+        {
+            try
+            {
+                var predictions = await studentRepository.PostPredictionForStudentExternAsync(student);
+                return Ok(predictions);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }
+
+
+
+
 

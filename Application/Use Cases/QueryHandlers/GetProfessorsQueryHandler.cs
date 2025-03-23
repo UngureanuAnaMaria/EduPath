@@ -4,106 +4,109 @@ using AutoMapper;
 using Domain.Repositories;
 using MediatR;
 
-public class GetProfessorsQueryHandler : IRequestHandler<GetProfessorsQuery, List<ProfessorDTO>>
+namespace Application.Use_Cases.QueryHandlers
 {
-    private readonly IProfessorRepository professorRepository;
-    private readonly ICourseRepository courseRepository;
-    private readonly IStudentCourseRepository studentCourseRepository;
-    private readonly IStudentRepository studentRepository;
-    private readonly ILessonRepository lessonRepository;
-    private readonly IMapper mapper;
-
-    public GetProfessorsQueryHandler(IProfessorRepository professorRepository, ILessonRepository lessonRepository, IMapper mapper, ICourseRepository courseRepository, IStudentCourseRepository studentCourseRepository, IStudentRepository studentRepository)
+    public class GetProfessorsQueryHandler : IRequestHandler<GetProfessorsQuery, List<ProfessorDTO>>
     {
-        this.professorRepository = professorRepository;
-        this.mapper = mapper;
-        this.courseRepository = courseRepository;
-        this.studentCourseRepository = studentCourseRepository;
-        this.studentRepository = studentRepository;
-        this.lessonRepository = lessonRepository;
-    }
+        private readonly IProfessorRepository professorRepository;
+        private readonly ICourseRepository courseRepository;
+        private readonly IStudentCourseRepository studentCourseRepository;
+        private readonly IStudentRepository studentRepository;
+        private readonly ILessonRepository lessonRepository;
+        private readonly IMapper mapper;
 
-    public async Task<List<ProfessorDTO>> Handle(GetProfessorsQuery request, CancellationToken cancellationToken)
-    {
-        var (professors, totalCount) = await professorRepository.GetFilteredProfessorsAsync(request.Name, request.Status, request.PageNumber, request.PageSize);
-
-        if (professors == null || !professors.Any())
+        public GetProfessorsQueryHandler(IProfessorRepository professorRepository, ILessonRepository lessonRepository, IMapper mapper, ICourseRepository courseRepository, IStudentCourseRepository studentCourseRepository, IStudentRepository studentRepository)
         {
-            Console.WriteLine($"Professors not found.");
-            return new List<ProfessorDTO>();
+            this.professorRepository = professorRepository;
+            this.mapper = mapper;
+            this.courseRepository = courseRepository;
+            this.studentCourseRepository = studentCourseRepository;
+            this.studentRepository = studentRepository;
+            this.lessonRepository = lessonRepository;
         }
 
-        var courses = await courseRepository.GetAllCoursesAsync();
-        var professorDTOs = mapper.Map<List<ProfessorDTO>>(professors);
-
-        foreach (var professorDTO in professorDTOs)
+        public async Task<List<ProfessorDTO>> Handle(GetProfessorsQuery request, CancellationToken cancellationToken)
         {
-            professorDTO.Courses = new List<CourseDTO>();
+            var (professors, totalCount) = await professorRepository.GetFilteredProfessorsAsync(request.Name, request.Status, request.PageNumber, request.PageSize);
 
-            foreach (var course in courses)
+            if (professors == null || !professors.Any())
             {
-                if (course.ProfessorId == professorDTO.Id)
+                Console.WriteLine($"Professors not found.");
+                return new List<ProfessorDTO>();
+            }
+
+            var courses = await courseRepository.GetAllCoursesAsync();
+            var professorDTOs = mapper.Map<List<ProfessorDTO>>(professors);
+
+            foreach (var professorDTO in professorDTOs)
+            {
+                professorDTO.Courses = new List<CourseDTO>();
+
+                foreach (var course in courses)
                 {
-                    var studentCourses = await studentCourseRepository.GetAllStudentCoursesAsync();
-                    var courseDTO = new CourseDTO
+                    if (course.ProfessorId == professorDTO.Id)
                     {
-                        Id = course.Id,
-                        Name = course.Name,
-                        Description = course.Description,
-                        StudentCourses = new List<StudentCourseDTO>()
-                    };
-
-                    if (studentCourses != null)
-                    {
-                        foreach (var studentCourse in studentCourses)
+                        var studentCourses = await studentCourseRepository.GetAllStudentCoursesAsync();
+                        var courseDTO = new CourseDTO
                         {
-                            if (studentCourse.CourseId == course.Id)
+                            Id = course.Id,
+                            Name = course.Name,
+                            Description = course.Description,
+                            StudentCourses = new List<StudentCourseDTO>()
+                        };
+
+                        if (studentCourses != null)
+                        {
+                            foreach (var studentCourse in studentCourses)
                             {
-                                var student = await studentRepository.GetStudentByIdAsync(studentCourse.StudentId);
-                                var studentDTO = new StudentDTO
+                                if (studentCourse.CourseId == course.Id)
                                 {
-                                    Id = student.Id,
-                                    Name = student.Name,
-                                    Email = student.Email,
-                                    Password = student.Password,
-                                    Status = student.Status,
-                                    CreatedAt = student.CreatedAt,
-                                    LastLogin = student.LastLogin
-                                };
+                                    var student = await studentRepository.GetStudentByIdAsync(studentCourse.StudentId);
+                                    var studentDTO = new StudentDTO
+                                    {
+                                        Id = student.Id,
+                                        Name = student.Name,
+                                        Email = student.Email,
+                                        Password = student.Password,
+                                        Status = student.Status,
+                                        CreatedAt = student.CreatedAt,
+                                        LastLogin = student.LastLogin
+                                    };
 
-                                var studentCourseDTO = new StudentCourseDTO
-                                {
-                                    Id = studentCourse.Id,
-                                    StudentId = studentCourse.StudentId,
-                                    Student = studentDTO,
-                                    CourseId = studentCourse.CourseId,
-                                    Course = courseDTO
-                                };
+                                    var studentCourseDTO = new StudentCourseDTO
+                                    {
+                                        Id = studentCourse.Id,
+                                        StudentId = studentCourse.StudentId,
+                                        Student = studentDTO,
+                                        CourseId = studentCourse.CourseId,
+                                        Course = courseDTO
+                                    };
 
-                                courseDTO.StudentCourses.Add(studentCourseDTO);
+                                    courseDTO.StudentCourses.Add(studentCourseDTO);
+                                }
                             }
                         }
-                    }
-                    var lessons = await lessonRepository.GetAllLessonsAsync();
-                    if (lessons != null)
-                    {
-                        courseDTO.Lessons = new List<LessonDTO>();
-
-                        foreach (var lesson in lessons)
+                        var lessons = await lessonRepository.GetAllLessonsAsync();
+                        if (lessons != null)
                         {
-                            if (lesson.CourseId == course.Id)
+                            courseDTO.Lessons = new List<LessonDTO>();
+
+                            foreach (var lesson in lessons)
                             {
-                                var lessonDTO = mapper.Map<LessonDTO>(lesson);
-                                courseDTO.Lessons.Add(lessonDTO);
+                                if (lesson.CourseId == course.Id)
+                                {
+                                    var lessonDTO = mapper.Map<LessonDTO>(lesson);
+                                    courseDTO.Lessons.Add(lessonDTO);
+                                }
                             }
                         }
-                    }
 
-                    professorDTO.Courses.Add(courseDTO);
+                        professorDTO.Courses.Add(courseDTO);
+                    }
                 }
             }
-        }
 
-        return professorDTOs;
+            return professorDTOs;
+        }
     }
 }

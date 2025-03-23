@@ -1,0 +1,90 @@
+.form-container {
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 2em;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-top: 6em;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  :host {
+    background-image: url('/bkgAuth.png');
+    background-size: cover;
+    display: block;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  label {
+    margin-top: 1em;
+    display: block;
+    font-weight: bold;
+    color: #333;
+    font-size: 1em;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.7em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+  }
+  
+  .register-button-container button {
+    margin-top: 1.5em;
+    padding: 0.7em 1.5em;
+    color: #fff;
+    background-color: #2E7D32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .register-button-container button:hover {
+    background-color: #307242;
+  }
+
+  .register-button-container {
+    text-align: center;
+    /*margin-top: 1em;*/
+  }
+  
+  small {
+    color: #d9534f;
+    font-size: 0.875em;
+    display: block;
+    margin-top: 0.5em;
+  }
+  
+  .links {
+    text-align: center;
+    margin-top: 1em;
+  }
+  
+  .links a {
+    color: #004289;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  #logo {
+    height: 40px;
+    margin-right: 10px;
+  }
+  

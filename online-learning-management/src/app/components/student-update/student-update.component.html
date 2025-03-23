@@ -1,18 +1,27 @@
-<div class="form-container">
-  <h1>Update Student</h1>
-  <div>
-    <label id="studentId" for="studentId">Student ID:</label>
-    <input type="text" id="studentId" [formControl]="studentIdControl" />
-    <button (click)="searchStudent()">Search</button>
-    <div *ngIf="studentIdControl.invalid && studentIdControl.touched">
-      <small *ngIf="studentIdControl.errors?.['required']">ID is required.</small>
-      <small *ngIf="studentIdControl.errors?.['invalidGuid']">ID must be a valid GUID.</small>
-    </div>
-    <div *ngIf="errorMessage">
-      <small>{{ errorMessage }}</small>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a routerLink="/student-list" class="navbar-brand">
+      <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+      EduPath</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <button class="predictions" (click)="onGetPredictions()"></button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;" (click)="onLogout()">Logout</button>
+        </li>
+      </ul>
     </div>
   </div>
+</nav>
 
+<div class="form-container">
+  <h1>Update Student</h1>
   <div *ngIf="student">
     <form [formGroup]="studentForm" (ngSubmit)="updateStudent()">
       <div>
@@ -69,6 +78,15 @@
         </div>
       </div>
 
+      <div>
+        <label for="studentCourses">Course:</label>
+        <input type="text" id="studentCourses" formControlName="studentCourses" />
+        <div *ngIf="studentForm.get('studentCourses')?.invalid && studentForm.get('studentCourses')?.touched">
+          <small *ngIf="studentForm.get('studentCourses')?.errors?.['required']">Course is required.</small>
+          <small *ngIf="studentForm.get('studentCourses')?.errors?.['maxlength']">Course must not exceed 200 characters.</small>
+        </div>
+      </div>
+
       <div class="update-button-container">
         <button type="button" [disabled]="studentForm.invalid" (click)="updateStudent()">Update</button>
       </div>
@@ -77,4 +95,8 @@
   </div>
 </div>
 
+<!-- Footer -->
+<footer class="footer bg-light text-center py-3 mt-5">
+  <p>© 2025 EduPath. All rights reserved.</p>
+</footer>
 

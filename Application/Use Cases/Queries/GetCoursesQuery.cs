@@ -1,9 +1,10 @@
 ﻿using Application.DTOs;
+using Application.Responses;
 using MediatR;
 
 namespace Application.Use_Cases.Queries
 {
-    public class GetCoursesQuery : IRequest<List<CourseDTO>>
+    public class GetCoursesQuery : IRequest<GetCoursesResponse>
     {
         public string? Name { get; set; }
         public Guid? ProfessorId { get; set; }

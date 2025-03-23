@@ -20,7 +20,7 @@ namespace Application.Use_Cases.Commands.Create
                 .MaximumLength(200).WithMessage("Password must not exceed 200 characters.");
 
             RuleFor(x => x.Status)
-                .NotEmpty().WithMessage("Status is required.");
+                .NotNull().WithMessage("Status is required.");
 
             RuleFor(x => x.CreatedAt)
                 .NotEmpty().WithMessage("CreatedAt is required.");

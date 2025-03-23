@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { StudentDTO } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-student-update',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
   templateUrl: './student-detail.component.html',
   styleUrls: ['./student-detail.component.css']
 })
@@ -48,7 +48,7 @@ export class StudentDetailComponent implements OnInit {
             this.student = data;
             this.errorMessage = null;
           }
-          console.log('Student data:', data);
+          //console.log('Student data:', data);
         },
         (error) => {
           this.student = null;
@@ -79,7 +79,7 @@ export class StudentDetailComponent implements OnInit {
         alert('No student selected to delete.');
       }
     }
-  }  
+  }
 
   validateGuid(control: any) {
     const guidPattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
@@ -88,5 +88,17 @@ export class StudentDetailComponent implements OnInit {
 
   isInvalidStudent(student: StudentDTO): boolean {
     return student.id === '00000000-0000-0000-0000-000000000000' || !student.name || !student.email;
+  }
+
+  onGetPredictions() {
+    this.router.navigate(['/student-predictions-extern']);
+  }
+
+  onLogout(): void {
+    localStorage.removeItem('token');
+    alert('Logged out successfully!');
+    //this.toastr.success('Logged out successfully!', 'Logout');
+    //localStorage.clear();
+    this.router.navigate(['/welcome-page']);
   }
 }

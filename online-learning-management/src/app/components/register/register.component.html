@@ -1,0 +1,70 @@
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a routerLink="/welcome-page" class="navbar-brand">
+      <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+      EduPath</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a routerLink="/welcome-page" class="nav-link" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="form-container">
+    <h1>Register</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
+          <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" />
+        <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+          <small *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</small>
+          <small *ngIf="!passwordsMatch()">Passwords do not match.</small>
+        </div>
+      </div>
+
+      <div class="register-button-container">
+        <button type="submit" [disabled]="registerForm.invalid || !passwordsMatch()">Register</button>
+      </div>
+
+      <div class="links">
+        <a routerLink="/login">Already have an account?</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-light text-center py-3 mt-5">
+    <p>© 2025 EduPath. All rights reserved.</p>
+  </footer>
+

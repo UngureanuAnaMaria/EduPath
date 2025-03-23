@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { StudentDTO } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-student-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
   templateUrl: './student-create.component.html',
   styleUrls: ['./student-create.component.css']
 })
@@ -73,4 +73,16 @@ export class StudentCreateComponent implements OnInit {
       alert('Please fill out the form correctly.');
     }
   }  
+
+  onGetPredictions() {
+    this.router.navigate(['/student-predictions-extern']);
+  }
+
+  onLogout(): void {
+    localStorage.removeItem('token');
+    alert('Logged out successfully!');
+    //this.toastr.success('Logged out successfully!', 'Logout');
+    //localStorage.clear();
+    this.router.navigate(['/welcome-page']);
+  }
 }

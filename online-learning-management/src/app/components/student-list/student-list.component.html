@@ -1,18 +1,76 @@
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a routerLink="/student-list" class="navbar-brand">
+      <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+      EduPath</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <button class="predictions" (click)="onGetPredictions()"></button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;" (click)="onLogout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="student-list">
   <h1>Student List</h1>
+  <div class="header">
+    <button class="create-btn" (click)="onCreate()">Create Student</button>
+  </div>
+  <div class="header-controls">
+    <div class="pagination-controls">
+      <label for="pageNumber">Page Number:</label>
+      <input type="number" id="pageNumber" [(ngModel)]="pageNumber" (change)="onPageChange(pageNumber)" min="1" [max]="getTotalPages()">
+      <label for="pageSize">Page Size:</label>
+      <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  </div>
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Status</th>
-        <th>Created At</th>
-        <th>Last Login</th>
-        <th>Courses</th>
+        <th>
+          Name
+          <input type="text" [(ngModel)]="filters.name" (input)="applyFilters()" placeholder="Search by name">
+        </th>
+        <th>
+          Email
+          <input type="text" [(ngModel)]="filters.email" (input)="applyFilters()" placeholder="Search by email">
+        </th>
+        <th>
+          Status
+          <select [(ngModel)]="filters.status" (change)="applyFilters()">
+            <option value="">All</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+          </select>
+        </th>
+        <th>
+          Created At
+          <input type="date" [(ngModel)]="filters.createdAt" (input)="applyFilters()">
+        </th>
+        <th>
+          Last Login
+          <input type="date" [(ngModel)]="filters.lastLogin" (input)="applyFilters()">
+        </th>
+        <th>
+          Courses
+          <input type="text" [(ngModel)]="filters.courses" (input)="applyFilters()" placeholder="Search by course">
+        </th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of students">
+      <tr *ngFor="let student of filteredStudents">
         <td>{{ student.name }}</td>
         <td>{{ student.email }}</td>
         <td>{{ student.status ? 'Active' : 'Inactive' }}</td>
@@ -21,26 +79,46 @@
         <td>
           <ul>
             <li *ngFor="let course of student.studentCourses || []">
-              Course ID: {{ course.courseId }}
+              {{ course.courseId }}
             </li>
           </ul>
+        </td>
+        <td>
+          <div class="actions">
+            <button (click)="onUpdate(student)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button (click)="onGetInfo(student)">
+              <i class="fa fa-info-circle"></i>
+            </button>
+            <button (click)="onDelete(student)">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button (click)="onPredict(student)">
+              <i class="fa fa-question-circle"></i>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
 
   <div class="pagination">
-    <button class="pagination-btn" 
-            (click)="onPageChange(pageNumber - 1)" 
+    <button class="pagination-btn"
+            (click)="onPageChange(pageNumber - 1)"
             [disabled]="pageNumber === 1">
       &larr; Previous
     </button>
     <span>Page {{ pageNumber }} of {{ getTotalPages() }}</span>
-    <button class="pagination-btn" 
-            (click)="onPageChange(pageNumber + 1)" 
+    <button class="pagination-btn"
+            (click)="onPageChange(pageNumber + 1)"
             [disabled]="pageNumber >= getTotalPages()">
       Next &rarr;
     </button>
   </div>
-  
 </div>
+
+<!-- Footer -->
+<footer class="footer bg-light text-center py-3 mt-5">
+  <p>© 2025 EduPath. All rights reserved.</p>
+</footer>

@@ -1,0 +1,79 @@
+<div class="contact-container">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a routerLink="/welcome-page" class="navbar-brand">
+        <img src="EduPathLogoCropped.webp" alt="EduPathLogo" id="logo">
+        EduPath</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerLink="/welcome-page" class="nav-link" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/login" class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Contact Section -->
+    <div class="contact-section container mt-5">
+        <h1 class="text-center mb-4">Contact Us</h1>
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <h3>Send us a message</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Write your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color: #2E7D32; border-color: #2E7D32;">Send Message</button>
+                </form>
+            </div>
+            <!-- Contact Details -->
+            <div class="col-md-6">
+                <h3>Get in touch</h3>
+                <p>If you have any questions, feel free to reach out to us:</p>
+                <ul class="list-unstyled">
+                    <li><strong>Email:</strong> support&#64;edupath.com</li>
+                    <li><strong>Phone:</strong> +123 456 7890</li>
+                    <li><strong>Address:</strong> 123 EduPath Street, Learning City</li>
+                </ul>
+                <h4>Follow Us</h4>
+                <p>
+                    <a href="#" class="me-3">Facebook</a>
+                    <img src="fb.png" alt="fbLogo" id="logo">
+                    <a href="#" class="me-3">Twitter</a>
+                    <img src="tw.png" alt="twLogo" id="logo">
+                    <a href="#" class="me-3">LinkedIn</a>
+                    <img src="link.png" alt="LinkedInLogo" id="logo">
+                </p>
+            </div>
+        </div>
+    </div>
+
+     <!-- Footer -->
+    <footer class="footer bg-light text-center py-3 mt-5">
+        <p>© 2025 EduPath. All rights reserved.</p>
+    </footer>
+</div>

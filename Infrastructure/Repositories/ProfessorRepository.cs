@@ -65,7 +65,13 @@ namespace Infrastructure.Repositories
 
         public async Task<(IEnumerable<Professor> Professors, int TotalCount)> GetFilteredProfessorsAsync(string? name, bool? status, int pageNumber, int pageSize)
         {
-            var query = context.Professors.AsQueryable();
+            var query = context.Professors
+                .Include(p => p.Courses)
+                .ThenInclude(c => c.Lessons)
+                .Include(p => p.Courses)
+                .ThenInclude(c => c.StudentCourses)
+                .ThenInclude(sc => sc.Student)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(name))
             {

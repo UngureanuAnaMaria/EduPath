@@ -1,24 +1,83 @@
+:host {
+  background-image: url('/bkg.webp');
+  background-size: cover;
+  display: block;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.predictions {
+  background-image: url('/ML-icon.png');
+  background-size: cover;
+  display: block;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 10px;
+  border-color: #2E7D32;
+  margin-right: 0.5em;
+}
+
+.predictions:hover {
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+  transform: translateY(-2px);
+}
+
 .student-list {
   max-width: 100%;
-  margin: 2em auto;
-  padding: 2em;
+  margin: 2em 2em 2em 2em;
+  padding: 2em 2em 2em 2em;
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins', sans-serif;
 }
 
-h1 {
+.student-list h1 {
   text-align: center;
-  margin-bottom: 1em;
   color: #333;
+}
+
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1.5em;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 th, td {
@@ -28,7 +87,7 @@ th, td {
 }
 
 th {
-  background-color: #004289;
+  background-color: #2E7D32;
   color: white;
 }
 
@@ -36,14 +95,19 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
-ul {
+tbody ul {
   margin: 0;
   padding-left: 1.5em;
   list-style: disc;
 }
 
-ul li {
+tbody ul li {
   margin-bottom: 0.5em;
+}
+
+.actions {
+  text-align: left;
+  cursor: pointer;
 }
 
 .pagination {
@@ -55,19 +119,47 @@ ul li {
   font-family: 'Poppins', sans-serif;
 }
 
-.pagination-btn {
-  background-color: #004289;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.logout-btn {
+  background-color: #2E7D32;
   color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 0.9em;
+  font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.logout-btn:hover{
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.pagination-btn, .create-btn {
+  background-color: #2E7D32;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-btn, .create-btn:hover{
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
 .pagination-btn:hover:not([disabled]) {
-  background-color: #003375;
+  background-color: #307242;
   transform: translateY(-2px);
 }
 
@@ -81,19 +173,75 @@ ul li {
   cursor: not-allowed;
 }
 
-@media (max-width: 600px) {
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
+
+button .fa-edit {
+  color: lightgreen;
+}
+
+button .fa-info-circle {
+  color: blue;
+}
+
+button .fa-trash {
+  color: red;
+}
+
+button .fa-question-circle {
+  color: black;
+}
+
+button:hover .fa-edit {
+  color: rgb(3, 47, 3);
+}
+
+button:hover .fa-info-circle {
+  color: rgb(4, 4, 46);
+}
+
+button:hover .fa-trash {
+  color: #350202;
+}
+
+button:hover .fa-question-circle {
+  color: rgb(42, 40, 40);
+}
+
+@media (max-width: 1181px) {
+  .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   table, thead, tbody, th, td, tr {
     display: block;
   }
 
-  th {
+  thead {
     display: none;
+  }
+
+  tr {
+    margin-bottom: 1em;
   }
 
   td {
     border: none;
     position: relative;
     padding-left: 50%;
+    text-align: right;
   }
 
   td::before {
@@ -103,5 +251,26 @@ ul li {
     width: 45%;
     padding-left: 10px;
     font-weight: bold;
+    text-align: left;
+  }
+
+  .pagination-controls label,
+  .pagination-controls input,
+  .pagination-controls select {
+    width: 100%;
+    margin-bottom: 0.5em;
+  }
+
+  th {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  th input,
+  th select {
+    width: 100%;
+    margin-top: 0.5em;
   }
 }
+

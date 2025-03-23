@@ -31,7 +31,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('online-learning-management');
   });
 
-  /*it('should render title', () => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.componentInstance;
 
@@ -41,5 +41,5 @@ describe('AppComponent', () => {
   
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, EduPath');
-  });*/
+  });
 });

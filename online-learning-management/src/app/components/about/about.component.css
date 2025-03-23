@@ -1,0 +1,86 @@
+/* General Styles */
+.about-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .about-hero {
+    padding: 100px 0;
+    animation: changeBackground 40s infinite;
+  }
+  
+  @keyframes changeBackground {
+    0% { background-image: url('/welcome-background-1.jpeg'); }
+    25% { background-image: url('/welcome-background-2.jpeg'); }
+    50% { background-image: url('/welcome-background-3.jpeg'); }
+    75% { background-image: url('/welcome-background-4.jpeg'); }
+    100% { background-image: url('/welcome-background-1.jpeg'); }
+  }
+  
+  
+  .about-hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+  }
+  
+  .about-hero p {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+  }
+  
+  .about-content img {
+    max-width: 60%;
+    height: auto;
+    margin-left: 15%;
+  }
+  
+  .about-content h2 {
+    color: #2E7D32;
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+  
+  .about-content p,
+  .about-content ul {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .about-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .about-mission {
+    padding: 50px 0;
+    color: white;
+    animation: changeBackground 40s infinite;
+  }
+  
+  @keyframes changeBackground {
+    0% { background-image: url('/welcome-background-1.jpeg'); }
+    25% { background-image: url('/welcome-background-2.jpeg'); }
+    50% { background-image: url('/welcome-background-3.jpeg'); }
+    75% { background-image: url('/welcome-background-4.jpeg'); }
+    100% { background-image: url('/welcome-background-1.jpeg'); }
+  }
+  
+  .about-mission h2 {
+    font-size: 2rem;
+    text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+  }
+  
+  .about-mission p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+  }
+
+  #logo {
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  

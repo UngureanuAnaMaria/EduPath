@@ -29,6 +29,9 @@ namespace Application.Utils
             CreateMap<Lesson, LessonDTO>().ReverseMap();
             CreateMap<CreateLessonCommand, Lesson>().ReverseMap();
             CreateMap<UpdateLessonCommand, Lesson>().ReverseMap();
+
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<RegisterUserCommand, User>().ReverseMap();
         }
     }
 }

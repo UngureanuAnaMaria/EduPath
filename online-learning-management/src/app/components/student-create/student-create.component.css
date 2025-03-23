@@ -1,3 +1,47 @@
+:host {
+  background-image: url('/bkg.webp');
+  background-size: cover;
+  display: block;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.predictions {
+  background-image: url('/ML-icon.png');
+  background-size: cover;
+  display: block;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 10px;
+  border-color: #2E7D32;
+  margin-right: 0.5em;
+}
+
+.predictions:hover {
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+  transform: translateY(-2px);
+}
+
 .form-container {
     max-width: 600px;
     margin: 2em auto;
@@ -5,17 +49,17 @@
     background: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    margin-top: 10em;
+    margin-top: 5em;
     font-family: 'Poppins', sans-serif;
   }
   
-  h1 {
+  .form-container h1 {
     text-align: center;
     margin-bottom: 1rem;
     color: #333;
   }
   
-  label {
+  .form-container label {
     margin-top: 1em;
     display: block;
     font-weight: bold;
@@ -40,21 +84,21 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  textarea {
+  .form-container textarea {
     resize: vertical;
     min-height: 100px;
   }
 
-  input[type="checkbox"] {
+  .form-container input[type="checkbox"] {
     width: auto;
     margin-right: 0.5rem;
   }
   
-  button {
+  .form-container button {
     margin-top: 1.5em;
     padding: 0.7em 1.5em;
     color: #fff;
-    background-color: #004289;
+    background-color: #2E7D32;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -62,11 +106,11 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  button:hover {
-    background-color: #004289;
+  .form-container button:hover {
+    background-color: #307242;
   }
 
-  small, .error {
+  .form-container small, .error {
     color: #d9534f;
     font-size: 0.875em;
     display: block;

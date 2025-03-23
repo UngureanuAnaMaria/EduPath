@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 100px 0;
+  animation: changeBackground 40s infinite;
+}
+
+@keyframes changeBackground {
+  0% { background-image: url('/welcome-background-1.jpeg'); }
+  25% { background-image: url('/welcome-background-2.jpeg'); }
+  50% { background-image: url('/welcome-background-3.jpeg'); }
+  75% { background-image: url('/welcome-background-4.jpeg'); }
+  100% { background-image: url('/welcome-background-1.jpeg'); }
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin: 15px 0;
+  text-shadow: 1px 0px 19px rgba(1,1,1,0.74);
+}
+
+/* Features Section */
+.features-section h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.features-section p {
+  color: #666;
+}
+
+.rounded-circle {
+  width: 150px; 
+  height: 150px;
+}
+
+/* Footer */
+.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+}

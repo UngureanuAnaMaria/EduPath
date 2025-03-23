@@ -1,4 +1,5 @@
-﻿using Domain.Repositories;
+﻿using Application.AI_ML_Module;
+using Domain.Repositories;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace Infrastructure
             services.AddDbContext<ApplicationDbContext>(
                     options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
                 );
+            services.AddTransient<StudentPerformancePredictionModel>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IStudentCourseRepository, StudentCourseRepository>();
             services.AddScoped<IProfessorRepository, ProfessorRepository>();

@@ -4,6 +4,8 @@ using Application.Use_Cases.Commands.Delete;
 using Application.Use_Cases.Commands.Update;
 using Application.Use_Cases.Queries;
 using Domain.Common;
+using Domain.Repositories;
+using Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +17,7 @@ namespace IntelligentOnlineLearningManagementSystem.Controllers
     {
         private readonly IMediator mediator;
 
-        public ProfessorsController(IMediator mediator)
+        public ProfessorsController(IMediator mediator, IProfessorRepository professorRepository)
         {
             this.mediator = mediator;
         }

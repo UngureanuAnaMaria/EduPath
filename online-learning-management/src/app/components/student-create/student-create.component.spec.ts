@@ -67,7 +67,7 @@ describe('StudentCreateComponent', () => {
     expect(emailControl?.valid).toBeTrue();
   });
 
-  /*it('should validate the password field correctly', () => {
+  it('should validate the password field correctly', () => {
     const passwordControl = component.studentForm.get('password');
     passwordControl?.setValue('');
     expect(passwordControl?.hasError('required')).toBeTrue();
@@ -77,7 +77,7 @@ describe('StudentCreateComponent', () => {
 
     passwordControl?.setValue('validPassword123');
     expect(passwordControl?.valid).toBeTrue();
-  });*/
+  });
 
   it('should validate the lastLogin field correctly', () => {
     component.studentForm.patchValue({

@@ -1,3 +1,47 @@
+:host {
+  background-image: url('/bkg.webp');
+  background-size: cover;
+  display: block;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background-color: #307242;
+  transform: translateY(-2px);
+}
+
+.predictions {
+  background-image: url('/ML-icon.png');
+  background-size: cover;
+  display: block;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 10px;
+  border-color: #2E7D32;
+  margin-right: 0.5em;
+}
+
+.predictions:hover {
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+  transform: translateY(-2px);
+}
+
 .form-container {
   max-width: 600px;
   margin: 2em auto;
@@ -5,24 +49,15 @@
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  margin-top: 10em;
+  margin-top: 5em;
   font-family: 'Poppins', sans-serif;
 }
 
-h1 {
+.form-container h1 {
   text-align: center;
   margin-bottom: 1rem;
   color: #333;
 }
-
-/* form {
-  max-width: 600px;
-  margin: 2em auto;
-  padding: 2em;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-} */
 
 label {
   margin-top: 1em;
@@ -53,31 +88,28 @@ input[type="checkbox"] {
   margin-right: 0.5rem;
 }
 
-button {
+.update-button-container button {
   margin-top: 1.5em;
   padding: 0.7em 1.5em;
   color: #fff;
-  background-color: #004289;
+  background-color: #2E7D32;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
   font-family: 'Poppins', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-button:hover {
-  background-color: #004289;
+.update-button-container button:hover {
+  background-color: #307242;
 }
 
 #studentId {
   width: calc(100% - 100px);
   display: inline-block;
-}
-
-button {
-  width: 100px;
-  display: inline-block;
-  margin-left: 1rm;
 }
 
 small {
@@ -86,9 +118,4 @@ small {
   display: block;
   margin-top: 0.5em;
   font-weight: bold;
-}
-
-.update-button-container {
-  text-align: center;
-  margin-top: 2em;
 }
