@@ -99,7 +99,7 @@ EduPath is an intelligent online learning management system designed to provide 
 
 For detailed project specifications, including system architecture, API details, and user guides, please refer to the provided **PDF** documentation:
 
-[Download the Project Specifications PDF][Projects-ITONET.pdf](https://github.com/user-attachments/files/19411742/Projects-ITONET.pdf)
+[Download the Project Specifications PDF](https://github.com/user-attachments/files/19411742/Projects-ITONET.pdf)
 
 ---
 
